@@ -15,5 +15,6 @@ class RunTests {
 		
 		client.hmset('hash', {a:1, b:2});
 		client.hgetall('hash', function(err, reply) trace(Json.stringify(reply)));
+		client.hget('hash', 'a', function(err, reply) trace(Json.stringify(reply)));
 	}
 }
