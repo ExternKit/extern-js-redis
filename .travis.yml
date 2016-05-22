@@ -18,7 +18,7 @@ matrix:
   allow_failures:
     - haxe: "3.2.1"
     
-before install:
+before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update              ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install redis       ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew services start redis; fi
