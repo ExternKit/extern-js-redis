@@ -3,6 +3,9 @@ dist: trusty
 
 language: haxe
 
+services:
+  - redis-server
+
 os:
   - linux
   - osx

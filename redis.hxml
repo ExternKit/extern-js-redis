@@ -2,3 +2,5 @@
 -main RunTests
 -js bin/tests.js
 -lib extern-js-redis
+-lib buddy
+-lib utest
