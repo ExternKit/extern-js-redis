@@ -1,0 +1,8 @@
+{
+  "name": "extern-js-redis",
+  "classPath": "src",
+  "dependencies": {
+    "hxnodejs": "",
+    "extern-js": ""
+  }
+}
