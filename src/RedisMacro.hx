@@ -34,7 +34,7 @@ class RedisMacro {
 							expr: null,
 						}),
 						access: [APublic],
-						meta: [{
+						meta: [{ // TODO: how do we support function(arg1, arg2, ...., argn, callback)?
 							name: ':overload',
 							pos: pos,
 							params: [macro function(key:String, ?callback:Callback<Dynamic>):Void {}]
@@ -46,7 +46,14 @@ class RedisMacro {
 							name: ':overload',
 							pos: pos,
 							params: [macro function(key:String, value:String, ?callback:Callback<Dynamic>):Void {}]
-						}]
+						}].concat(switch field {
+							case 'hmset': [{
+								name: ':overload',
+								pos: pos,
+								params: [macro function(key:String, obj:{}, ?callback:Callback<Dynamic>):Void {}]
+							}];
+							default: [];
+						}),
 					});
 				default: // don't override existing field
 			}

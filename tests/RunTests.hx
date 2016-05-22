@@ -1,14 +1,19 @@
 package;
 
+import haxe.Json;
 import js.redis.Redis;
 
 class RunTests {
 	static function main() {
 		var client = Redis.createClient();
-		// client.unref();
+		
 		client.set('key', 'value');
-		client.get('key', function(err, reply) trace(reply));
-		client.incr('counter');
-		client.get('counter', function(err, reply) trace(reply));
+		client.get('key', function(err, reply) trace(Json.stringify(reply)));
+		
+		client.incr('counter', function(err, reply) trace(Json.stringify(reply)));
+		client.get('counter', function(err, reply) trace(Json.stringify(reply)));
+		
+		client.hmset('hash', {a:1, b:2});
+		client.hgetall('hash', function(err, reply) trace(Json.stringify(reply)));
 	}
 }
