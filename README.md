@@ -1,4 +1,4 @@
-# extern-js-redis
+# extern-js-redis [![Build Status](https://travis-ci.org/ExternKit/extern-js-redis.svg?branch=master)](https://travis-ci.org/ExternKit/extern-js-redis)
 
 - **Target :** Javascript (NodeJS)
 - **Library :** redis 
