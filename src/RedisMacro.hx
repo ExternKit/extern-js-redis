@@ -9,7 +9,16 @@ using Lambda;
 
 // TODO: investigate how to put this file inside the js package
 class RedisMacro {
-	public static function buildCommands() {
+	
+	public static function buildClient() {
+		return buildCommands(macro:Void);
+	}
+	
+	public static function buildMulti() {
+		return buildCommands(macro:Multi);
+	}
+	
+	static function buildCommands(ct) {
 		var pos = Context.currentPos();
 		var fields = Context.getBuildFields();
 		var path = Context.resolvePath('redis-commands.json');
@@ -30,27 +39,27 @@ class RedisMacro {
 								opt: true,
 								type: macro:Callback<Dynamic>,
 							}],
-							ret: macro:Void,
+							ret: ct,
 							expr: null,
 						}),
 						access: [APublic],
 						meta: [{ // TODO: how do we support function(arg1, arg2, ...., argn, callback)?
 							name: ':overload',
 							pos: pos,
-							params: [macro function(key:String, ?callback:Callback<Dynamic>):Void {}]
+							params: [macro function(key:String, ?callback:Callback<Dynamic>):$ct {}]
 						},{
 							name: ':overload',
 							pos: pos,
-							params: [macro function(key:String, args:Array<String>, ?callback:Callback<Dynamic>):Void {}]
+							params: [macro function(key:String, args:Array<String>, ?callback:Callback<Dynamic>):$ct {}]
 						},{
 							name: ':overload',
 							pos: pos,
-							params: [macro function(key:String, value:String, ?callback:Callback<Dynamic>):Void {}]
+							params: [macro function(key:String, value:String, ?callback:Callback<Dynamic>):$ct {}]
 						}].concat(switch field {
 							case 'hmset': [{
 								name: ':overload',
 								pos: pos,
-								params: [macro function(key:String, obj:{}, ?callback:Callback<Dynamic>):Void {}]
+								params: [macro function(key:String, obj:{}, ?callback:Callback<Dynamic>):$ct {}]
 							}];
 							default: [];
 						}),
