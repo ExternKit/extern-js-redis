@@ -1,1 +1,7 @@
-bin
+# ignore everything under bin, except bin/node
+bin/*
+!bin/node
+
+# ignore everything under bin/node, except bin/node/*.json
+bin/node/*
+!bin/node/*.json

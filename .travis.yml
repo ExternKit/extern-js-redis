@@ -19,7 +19,8 @@ matrix:
     - haxe: development
     
 install:
-  - haxelib install travix
+  - haxelib git extern-js https://github.com/ExternKit/extern-js
+  - haxelib git travix https://github.com/back2dos/travix
   - haxelib run travix install
 
 script:
